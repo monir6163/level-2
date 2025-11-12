@@ -1,4 +1,4 @@
-interface IDeveloper<T, B> {
+interface IDeveloper<T, B = null> {
   name: string;
   salary: number;
   device: {
@@ -19,6 +19,10 @@ type RichDeveloperWatch = {
   callSupport: boolean;
   aiFeature: boolean;
 };
+type RichDeveloperBike = {
+  brand: string;
+  cc: string;
+};
 const poorDeveloper: IDeveloper<PoorDeveloperWatch> = {
   name: "Monir",
   salary: 10000,
@@ -33,7 +37,7 @@ const poorDeveloper: IDeveloper<PoorDeveloperWatch> = {
   },
 };
 
-const richDeveloper: IDeveloper<RichDeveloperWatch> = {
+const richDeveloper: IDeveloper<RichDeveloperWatch, RichDeveloperBike> = {
   name: "Monir",
   salary: 10000,
   device: {
@@ -46,5 +50,9 @@ const richDeveloper: IDeveloper<RichDeveloperWatch> = {
     stopWatch: true,
     callSupport: true,
     aiFeature: true,
+  },
+  bike: {
+    brand: "Royal Infinity",
+    cc: "300",
   },
 };
