@@ -3,7 +3,6 @@ import config from "./config";
 
 const server: Server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
-    console.log("Server running...");
     if (req.url == "/" && req.method == "GET") {
       res.writeHead(200, { "content-type": "application/json" });
       res.end(
@@ -12,6 +11,17 @@ const server: Server = http.createServer(
           path: req.url,
         })
       );
+    }
+    if (req.url == "/api/create/user" && req.method == "POST") {
+      let body = "";
+      req.on("data", (chunk) => {
+        body += chunk.toString();
+      });
+      req.on("end", () => {
+        // res.writeHead(201, { "content-type": "application/json" });
+        const parseBody = JSON.parse(body);
+        res.end(JSON.stringify(parseBody));
+      });
     }
   }
 );
